@@ -269,7 +269,7 @@ async def generate_image_based_exam(pdf_path: str, difficulty: str, num_question
             "hard": "zor",
         }.get(difficulty, difficulty)
 
-        model_names_to_try = ['gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-pro-latest']
+        model_names_to_try = ['gemini-2.5-flash']
         model = None
 
         for model_name in model_names_to_try:
@@ -456,7 +456,7 @@ Tüm soruları ve açıklamaları Türkçe dilinde oluştur."""
             logging.warning(f"Could not list models: {e}")
         
         # Try different model names (using the available models from the logs)
-        model_names_to_try = ['gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-pro-latest']
+        model_names_to_try = ['gemini-2.5-flash', 'gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-pro-latest']
         model = None
         
         for model_name in model_names_to_try:
