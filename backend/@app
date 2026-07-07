@@ -172,7 +172,7 @@ def _extract_images_with_pdf2image(pdf_path: str, target_count: int) -> List[dic
 
         extracted = []
         for page_index in selected_indices:
-            extracted.append({
+x            extracted.append({
                 "page_index": page_index,
                 "image_data": _pil_image_to_base64(pages[page_index])
             })
@@ -733,12 +733,11 @@ async def get_result(result_id: str, current_user: dict = Depends(get_current_us
 # Include router
 app.include_router(api_router)
 
-# Bu bloğu kopyalayıp yapıştır:
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS", "DELETE", "PUT"],
+    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 

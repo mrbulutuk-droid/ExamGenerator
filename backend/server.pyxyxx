@@ -1,3 +1,5 @@
+
+
 from fastapi import FastAPI, APIRouter, HTTPException, Depends, File, UploadFile, Form, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from dotenv import load_dotenv
@@ -733,12 +735,11 @@ async def get_result(result_id: str, current_user: dict = Depends(get_current_us
 # Include router
 app.include_router(api_router)
 
-# Bu bloğu kopyalayıp yapıştır:
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS", "DELETE", "PUT"],
+    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
